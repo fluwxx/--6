@@ -1,23 +1,19 @@
-import React, { useState } from 'react';
+// App.js
+import React from 'react';
+import { useSelector } from 'react-redux';
 import Navbar from './Navbar';
 import Product from './Product';
-import productsData from './data/product.json';
+import { selectProducts } from './productSlice';
 
 function App() {
-    const [products] = useState(productsData);
-    const [cart, setCart] = useState([]);
-
-    const addToCart = (productId) => {
-        const productToAdd = products.find(product => product.product === productId);
-        setCart([...cart, productToAdd]);
-    };
+    const products = useSelector(selectProducts);
 
     return (
         <div>
-            <Navbar cartCount={cart.length} />
+            <Navbar />
             <div className="products">
                 {products.map(product => (
-                    <Product key={product.product} product={product} addToCart={addToCart} />
+                    <Product key={product._id} product={product} />
                 ))}
             </div>
         </div>
