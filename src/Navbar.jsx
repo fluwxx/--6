@@ -1,22 +1,20 @@
-// Navbar.js
+// src/components/Navbar.js
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { selectCartItems } from './cartSlice';
 
-function Navbar() {
-    const cartItems = useSelector(selectCartItems);
+const Navbar = () => {
+    const cartItemsCount = useSelector(state => state.cart.items.length);
 
     return (
         <nav>
-            <div>Logo</div>
             <ul>
-                <li>Home</li>
-                <li>About</li>
-                <li>Contact</li>
-                <li>Cart ({cartItems.length})</li>
+                <li><Link to="/">Home</Link></li>
+                <li><Link to="/products">Products</Link></li>
+                <li><Link to="/cart">Cart ({cartItemsCount})</Link></li>
             </ul>
         </nav>
     );
-}
+};
 
 export default Navbar;

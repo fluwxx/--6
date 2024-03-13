@@ -1,14 +1,11 @@
-// productSlice.js
+// src/store/productsSlice.js
 import { createSlice } from '@reduxjs/toolkit';
+import productsData from '../data/products.json';
 
-const productSlice = createSlice({
+const productsSlice = createSlice({
     name: 'products',
-    initialState: {
-        products: [],
-    },
-    reducers: {},
+    initialState: productsData,
+    reducers: {}
 });
 
-export const selectProducts = (state) => state.products.products;
-
-export default productSlice.selectProducts;
+export default productsSlice.reducer;

@@ -1,22 +1,22 @@
-// App.js
+// src/App.js
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './Navbar';
-import Product from './Product';
-import { selectProducts } from './productSlice';
+import ProductList from './ProductList';
+import Cart from './Cart';
 
 function App() {
-    const products = useSelector(selectProducts);
-
     return (
-        <div>
-            <Navbar />
-            <div className="products">
-                {products.map(product => (
-                    <Product key={product._id} product={product} />
-                ))}
+        <Router>
+            <div>
+                <Navbar />
+                <Routes>
+                    <Route path="/products" element={<ProductList />} />
+                    <Route path="/cart" element={<Cart />} />
+                    <Route path="/" element={<h2>Home Page</h2>} />
+                </Routes>
             </div>
-        </div>
+        </Router>
     );
 }
 
